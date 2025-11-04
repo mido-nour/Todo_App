@@ -1,0 +1,81 @@
+import { expect } from "chai"
+import { initializeTestDb, insertTestUser, getToken } from "./helper/test.js"
+
+describe("Testing basic database functionality", () => {
+  let token = null
+  const testUser = { email: "foo@test.com", password: "password123" }
+
+  before(async () => {
+    
+    await initializeTestDb()
+    await insertTestUser(testUser)
+    token = getToken(testUser.email)
+  })
+
+  it("should get all tasks", async () => {
+    const response = await fetch("http://localhost:3001/")
+    const data = await response.json()
+    expect(response.status).to.equal(200)
+    expect(data).to.be.an("array")
+  })
+
+  it("should create a new task", async () => {
+    const newTask = { description: "Test task" }
+
+    const response = await fetch("http://localhost:3001/create", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      },
+      body: JSON.stringify({ task: newTask })
+    })
+
+    const data = await response.json()
+    expect(response.status).to.equal(201)
+    expect(data).to.include.all.keys("id", "description")
+    expect(data.description).to.equal(newTask.description)
+  })
+
+  it("should delete task", async () => {
+    
+    const createResponse = await fetch("http://localhost:3001/create", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      },
+      body: JSON.stringify({ task: { description: "Temp delete test" } })
+    })
+
+    const created = await createResponse.json()
+
+    
+    const response = await fetch(
+      `http://localhost:3001/delete/${created.id}`,
+      {
+        method: "delete",
+        headers: { Authorization: token }
+      }
+    )
+
+    const data = await response.json()
+    expect(response.status).to.equal(200)
+    expect(data).to.include.all.keys("id")
+  })
+
+  it("should not create a new task without description", async () => {
+    const response = await fetch("http://localhost:3001/create", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token
+      },
+      body: JSON.stringify({ task: null })
+    })
+
+    const data = await response.json()
+    expect(response.status).to.equal(400)
+    expect(data).to.include.all.keys("error")
+  })
+})
