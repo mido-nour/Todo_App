@@ -8,14 +8,14 @@ Sovellus on toteutettu:
 
 # suoritukset 
 olen tehnyt kaikki osiot 1-8 part.
-1- Creating basic app structure
-2- creating backend
-3- Automated testing
-4- Call Rest Api from React
-5- Environment variables, routing, middleware for backend
-6- Authentication and authorisation on backend
-7- Authentication and authorisation on frontend
-8- Model-View-Controller architecture
+- 1- Creating basic app structure
+- 2- creating backend
+- 3- Automated testing
+- 4- Call Rest Api from React
+- 5- Environment variables, routing, middleware for backend
+- 6- Authentication and authorisation on backend
+- 7- Authentication and authorisation on frontend
+- 8- Model-View-Controller architecture
 
 
 
@@ -32,13 +32,13 @@ olen tehnyt kaikki osiot 1-8 part.
 
 ### .env/ server
 
-PORT=3001
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=postgres
-DB_PASSWORD=tässä laitat vaikka sun oma salasana 
-DB_NAME=test_todo
-JWT_SECRET= oma avain salasana
+- PORT=3001
+- DB_HOST=localhost
+- DB_PORT=5432
+- DB_USER=postgres
+- DB_PASSWORD=tässä laitat vaikka sun oma salasana 
+- DB_NAME=test_todo
+- JWT_SECRET= oma avain salasana
 
 
 # .evn / ToDo-App 
