@@ -32,11 +32,11 @@ const postTask = async (req, res, next) => {
 const deleteTaskById = async (req, res, next) => {
   const { id } = req.params
   try {
-    const result = await deleteTask(id)
+  const result = await deleteTask(id)
     if (result.rowCount === 0) {
       return next(new ApiError('Task not found', 404))
     }
-    return res.status(200).json({ message: 'Task deleted successfully' })
+    return res.status(200).json({ id: Number(id) })
   } catch (error) {
     return next(error)
   }

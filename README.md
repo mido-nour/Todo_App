@@ -3,7 +3,7 @@
 Tämä on OAMK:n Web Programming Application Project -kurssin yksilötehtävä.  
 Sovellus on toteutettu:
 - React (frontend)
-- Node.js + Express (backend)
+- Node.js (backend)
 - PostgreSQL (tietokanta)
 
 # suoritukset 
@@ -41,7 +41,7 @@ olen tehnyt kaikki osiot 1-8 part.
 - JWT_SECRET= oma avain salasana
 
 
-# .evn / ToDo-App 
+# .evn / Todo-App 
 - VITE_API_URL=http://localhost:3001
 
 
